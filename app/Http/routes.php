@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Landing@index');
+Route::get('welcome', 'Welcome@index');
+Route::get('worlds/select', 'Worlds@select');
+Route::resource('worlds', 'Worlds');
 
 /*
 |--------------------------------------------------------------------------
