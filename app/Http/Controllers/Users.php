@@ -15,4 +15,14 @@ class Users extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
+
+    public function update()
+    {
+        return "actualizado!";
+    }
+
+    public function destroy()
+    {
+        return "destruido!";
+    }
 }
