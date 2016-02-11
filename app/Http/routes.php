@@ -15,6 +15,7 @@ Route::get('/', 'Landing@index');
 Route::get('welcome', 'Welcome@index');
 Route::get('worlds/select', 'Worlds@select');
 Route::resource('worlds', 'Worlds');
+Route::resource('users', 'Users');
 
 /*
 |--------------------------------------------------------------------------
