@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class Users extends Controller
 {
@@ -21,8 +21,19 @@ class Users extends Controller
         return "actualizado!";
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        return "destruido!";
+        $user = User::find($id);
+
+        if(!$user)
+        {
+            session()->flash('error', 'User not found');
+
+            return Redirect::to('users');
+        }
+
+        $user->delete();
+        session()->flash('success', 'Successfully deleted the user' . $user->name);
+        return Redirect::to('users');
     }
 }

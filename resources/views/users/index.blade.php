@@ -16,11 +16,11 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>
-                            {{ Form::open(['url' => 'users/0'.$user->name, 'method' => 'put']) }}
+                            {{ Form::open(['url' => 'users/'.$user->id, 'method' => 'put']) }}
                             <button type="submit">Edit</button>
                             {{ Form::close() }}
 
-                            {{ Form::open(['url' => 'users/'.$user->name, 'method' => 'delete']) }}
+                            {{ Form::open(['url' => 'users/'.$user->id, 'method' => 'delete']) }}
                             <button type="submit">Delete</button>
                             {{ Form::close() }}
                         </td>

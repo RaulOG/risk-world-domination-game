@@ -12,6 +12,8 @@
         <p>creation and management</p>
         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
     </header>
+    @include('partials.flash_messages')
+
     @yield('content')
 
     @section('scripts')
