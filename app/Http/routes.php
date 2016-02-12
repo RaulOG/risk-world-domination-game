@@ -25,9 +25,9 @@ Route::group(['middleware' => 'web'], function () {
     // Adds auth routes such as login and logout
     Route::auth();
 
-    Route::get('/', 'Landing@index')->name('landing');
-    Route::get('/welcome', 'Welcome@index')->name('welcome');
-    Route::get('worlds/select', 'Worlds@select')->name('worlds.select');
-    Route::resource('worlds', 'Worlds');
-    Route::resource('users', 'Users');
+    Route::get('/', 'LandingController@index')->name('landing');
+    Route::get('/welcome', 'WelcomeController@index')->name('welcome');
+    Route::get('worlds/select', 'WorldsController@select')->name('worlds.select');
+    Route::resource('worlds', 'WorldsController');
+    Route::resource('users', 'UsersController');
 });

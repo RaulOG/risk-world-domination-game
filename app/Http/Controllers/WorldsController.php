@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class Worlds extends Controller
+class WorldsController extends AppController
 {
     /**
      * Display a listing of the resource.
@@ -27,5 +27,10 @@ class Worlds extends Controller
     public function show()
     {
         return view('worlds.show');
+    }
+
+    public function create()
+    {
+        return view('worlds.create');
     }
 }

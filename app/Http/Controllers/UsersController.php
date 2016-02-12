@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 
-class Users extends Controller
+class UsersController extends AppController
 {
     public function index()
     {

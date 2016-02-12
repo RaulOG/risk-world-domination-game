@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class Landing extends Controller
+class LandingController extends Controller
 {
     /**
      * This should verify that the user is not logged
