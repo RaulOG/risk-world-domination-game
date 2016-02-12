@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', 'Landing@index');
-Route::get('welcome', 'Welcome@index');
-Route::get('worlds/select', 'Worlds@select');
-Route::resource('worlds', 'Worlds');
-Route::resource('users', 'Users');
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,7 +21,13 @@ Route::resource('users', 'Users');
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::group(['middleware' => 'web'], function () {
+    // Adds auth routes such as login and logout
+    Route::auth();
 
-Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', 'Landing@index')->name('landing');
+    Route::get('/welcome', 'Welcome@index')->name('welcome');
+    Route::get('worlds/select', 'Worlds@select')->name('worlds.select');
+    Route::resource('worlds', 'Worlds');
+    Route::resource('users', 'Users');
 });

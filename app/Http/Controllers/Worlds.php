@@ -16,16 +16,16 @@ class Worlds extends Controller
      */
     public function index()
     {
-        return 'bl';
+        return view('worlds.index');
     }
 
     public function select()
     {
-        return 'select world';
+        return view('worlds.select');
     }
 
     public function show()
     {
-        return "WHAT";
+        return view('worlds.show');
     }
 }

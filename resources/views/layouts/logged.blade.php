@@ -5,9 +5,12 @@
 <body>
 <div class="container">
     <header class="jumbotron">
-        <img src="images/logo.svg" alt="logo" height="42" width="42">
+        <a href="{{ route('welcome') }}">
+            {{ HTML::image('images/logo.svg', 'logo', array('height' => 42, 'weight' => 42)) }}
+        </a>
         <h1>ANIMAL WORLD</h1>
         <p>creation and management</p>
+        <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
     </header>
     @yield('content')
 

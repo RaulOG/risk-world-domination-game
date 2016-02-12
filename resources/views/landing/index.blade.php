@@ -4,7 +4,7 @@
 
 @section('content')
 
-        <!--  THIS IS THE MAIN CONTENT -->
+<!--  THIS IS THE MAIN CONTENT -->
 
 <div>
     <h2>
@@ -18,20 +18,55 @@
     <h3>
         Log in
     </h3>
-    <form role="form">
+    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        {!! csrf_field() !!}
+        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label class="col-md-4 control-label">E-Mail Address</label>
+
+            <div class="col-md-6">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label class="col-md-4 control-label">Password</label>
+
+            <div class="col-md-6">
+                <input type="password" class="form-control" name="password">
+
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group">
-            <label for="email">Email address:</label>
-            <input type="email" class="form-control" id="email">
+            <div class="col-md-6 col-md-offset-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember"> Remember Me
+                    </label>
+                </div>
+            </div>
         </div>
+
         <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
+            <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-btn fa-sign-in"></i>Login
+                </button>
+
+                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+            </div>
         </div>
-        <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
-        </div>
-        <a class="btn btn-success btn-lg" href="welcome" role="button">Log in</a>
-        <!--   for now we need this, but later we can use submit <button type="submit" class="btn btn-default">Submit</button> -->
     </form>
 </div>
 
@@ -42,46 +77,9 @@
         New in here?
     </h3>
 
-    <!-- Trigger the sign in modal with a button -->
-    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Sign in</button>
-
-    <!-- Sign in Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Sign in Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create a new account</h4>
-                </div>
-                <div class="modal-body">
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="username" class="form-control" id="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd">
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Remember me</label>
-                        </div>
-                        <a class="btn btn-success btn-lg" href="welcome" role="button">Create an account and log in</a>
-                        <!--   for now we need this, but later we can use submit <button type="submit" class="btn btn-default">Submit</button> -->
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
+    <a href="register" class="btn btn-primary">
+        <i class="fa fa-btn fa-user"></i>Register
+    </a>
 </div>
 
 @endsection

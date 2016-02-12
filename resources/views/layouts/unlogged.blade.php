@@ -9,7 +9,9 @@
     <!--  THIS IS THE HEADER -->
 
     <header class="jumbotron">
-        <img src="images/logo.svg" alt="logo" height="42" width="42">
+        <a href="{{ route('landing') }}">
+            {{ HTML::image('images/logo.svg', 'logo', array('height' => 42, 'weight' => 42)) }}
+        </a>
         <h1>ANIMAL WORLD</h1>
         <p>creation and management</p>
     </header>
