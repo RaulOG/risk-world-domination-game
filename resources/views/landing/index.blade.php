@@ -18,56 +18,43 @@
     <h3>
         Log in
     </h3>
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+
+    <form role="form" method="POST" action="{{ url('/login') }}">
         {!! csrf_field() !!}
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label class="col-md-4 control-label">E-Mail Address</label>
+        <fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Your email">
+            @if ($errors->has('email'))
+            <span class="help-block">
+                <small>{{ $errors->first('email') }}</small>
+            </span>
+            @endif
+        </fieldset>
 
-            <div class="col-md-6">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+        <fieldset class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Your password">
+            @if ($errors->has('password'))
+            <span class="help-block">
+                <small>{{ $errors->first('password') }}</small>
+            </span>
+            @endif
+        </fieldset>
 
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
+        <fieldset class="form-group">
+                <label>
+                <input type="checkbox" name="remember"> Remember Me
+                </label>
+        </fieldset>
 
-        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label class="col-md-4 control-label">Password</label>
-
-            <div class="col-md-6">
-                <input type="password" class="form-control" name="password">
-
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember"> Remember Me
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-btn fa-sign-in"></i>Login
-                </button>
-
-                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-            </div>
-        </div>
+        <fieldset class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-btn fa-sign-in"></i>Login
+            </button>
+            <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+        </fieldset>
     </form>
+
 </div>
 
 <!--  SIGN IN  -->
@@ -77,7 +64,7 @@
         New in here?
     </h3>
 
-    <a href="register" class="btn btn-primary">
+    <a href="register" class="btn btn-default">
         <i class="fa fa-btn fa-user"></i>Register
     </a>
 </div>
