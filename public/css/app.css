@@ -1,2 +1,33 @@
 
 /*# sourceMappingURL=app.css.map */
+
+/*# HEADER STYLES */
+
+header img
+{
+	height: 50px;
+	width: 50px;
+	vertical-align: text-bottom;
+	margin-right: 10px;
+}
+
+header h1
+{
+	display: inline;
+}
+
+.userPanel
+{
+	border-top: 1px solid #fff;
+	padding-top: 10px;
+}
+
+div .userPanel small
+{
+	display: inline-block;
+	margin-right: 0;
+}
+
+/*# WELCOME STYLES */
+
+

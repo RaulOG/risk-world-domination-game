@@ -4,24 +4,24 @@
 </head>
 
 <body>
-<div class="container">
+    <div class="container">
 
-    <!--  THIS IS THE HEADER -->
+        <!--  THIS IS THE HEADER -->
 
-    <header class="jumbotron">
-        <a href="{{ route('landing') }}">
-            {{ HTML::image('images/logo.svg', 'logo', array('height' => 42, 'weight' => 42)) }}
-        </a>
-        <h1>ANIMAL WORLD</h1>
-        <p>creation and management</p>
-    </header>
+        <header class="jumbotron">
+            <a href="{{ route('landing') }}">
+                {{ HTML::image('images/logo.svg', 'logo') }}
+            </a>
+            <h1>ANIMAL WORLD</h1>
+            <p>creation and management</p>
+        </header>
 
-    @yield('content')
+        @yield('content')
 
-    @section('scripts')
+        @section('scripts')
         {{ HTML::script('bower/jquery/dist/jquery.min.js') }}
         {{ HTML::script('bower/bootstrap/dist/js/bootstrap.min.js') }}
-    @show
-</div>
+        @show
+    </div>
 </body>
 </html>
