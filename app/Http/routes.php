@@ -27,7 +27,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/', 'LandingController@index')->name('landing');
     Route::get('/welcome', 'WelcomeController@index')->name('welcome');
-    Route::get('worlds/select', 'WorldsController@select')->name('worlds.select');
-    Route::resource('worlds', 'WorldsController');
     Route::resource('users', 'UsersController');
+    Route::post('games', 'GamesController@store')->name('games.store');;
+    Route::get('games/{id}', 'GamesController@show')->name('games.show');;
 });
