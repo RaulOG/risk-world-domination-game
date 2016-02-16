@@ -30,4 +30,38 @@ div .userPanel small
 
 /*# WELCOME STYLES */
 
+#join
+{
+	height: 200px;
+	width: 200px;
+	background-image: url("../images/join.png");
+	background-size: 100% 100%;
+	display: block;
+	margin: 0px auto;
+	transition: all 0.3s ease-in-out;
+}
+
+#join:hover
+{
+	background-image: url("../images/join2.png");
+}
+
+#create
+{
+	height: 200px;
+	width: 200px;
+	background-image: url("../images/create.png");
+	background-size: 100% 100%;	
+	display: block;
+	margin: 0px auto;
+	transition: all 0.3s ease-in-out;
+}
+
+#create:hover
+{
+	background-image: url("../images/create2.png");
+}
+
+
+
 

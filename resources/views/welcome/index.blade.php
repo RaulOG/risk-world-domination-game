@@ -9,11 +9,15 @@
         </h2>
         <nav>
             {{ Form::open(['url' => route('games.store'), 'method' => 'post']) }}
-            <div class="well"><button class="btn btn-success" href="{{ route('games.store') }}" role="button">join game</button></div>
+            <div class="container">
+                <button class="btn" id="join" href="{{ route('games.store') }}" role="button"></button>                
+            </div>
             {{ Form::close() }}
 
             {{ Form::open(['url' => route('games.store'), 'method' => 'post']) }}
-            <div class="well"><button class="btn btn-success" href="{{ route('games.store') }}" role="button">create new game</button></div>
+            <div class="container">
+                <button class="btn" id="create" href="{{ route('games.store') }}" role="button"></button>
+            </div>
             {{ Form::close() }}
         </nav>
     </div>
