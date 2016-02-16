@@ -5,15 +5,12 @@
 
 <body>
     <div class="container">
-
-        <!--  THIS IS THE HEADER -->
-
         <header class="jumbotron">
             <a href="{{ route('landing') }}">
                 {{ HTML::image('images/logo.svg', 'logo') }}
             </a>
-            <h1>ANIMAL WORLD</h1>
-            <p>creation and management</p>
+            <h1>RISK</h1>
+            <p>A world domination game</p>
         </header>
 
         @yield('content')

@@ -21,6 +21,8 @@ class GamesController extends AppController
         $player->user_id = Auth::id();
         $player->save();
 
+        session()->flash('success', sprintf('%s, you have successfully created the game!', Auth::user()->name));
+
         return redirect()->route(self::SHOW_GAME, [$game->id]);
     }
 

@@ -8,7 +8,7 @@
 
 <div>
     <h2>
-        Hello Animal Lover!
+        Hello Commander!
     </h2>
 </div>
 
