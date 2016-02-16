@@ -15,7 +15,7 @@
         <!--  THIS IS THE USER OPTION PANEL -->
         <div class="userPanel">
             <small>Signed in as {{ Auth::user()->name }}</small>
-            <a class="btn btn-default btn-sm" href="logout" role="button">Log out</span></a>
+            <a class="btn btn-default btn-sm" href="{{ route('logout') }}" role="button">Log out</span></a>
         </div>
 
     </header>

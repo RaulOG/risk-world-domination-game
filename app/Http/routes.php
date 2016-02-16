@@ -22,12 +22,14 @@
 |
 */
 Route::group(['middleware' => 'web'], function () {
-    // Adds auth routes such as login and logout
-    Route::auth();
+    include('Routes/Auth.php');
 
     Route::get('/', 'LandingController@index')->name('landing');
+
     Route::get('/welcome', 'WelcomeController@index')->name('welcome');
+
     Route::resource('users', 'UsersController');
-    Route::post('games', 'GamesController@store')->name('games.store');;
-    Route::get('games/{id}', 'GamesController@show')->name('games.show');;
+
+    Route::post('games', 'GamesController@store')->name('games.store');
+    Route::get('games/{id}', 'GamesController@show')->name('games.show');
 });
