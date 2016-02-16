@@ -31,7 +31,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('users', 'UsersController');
 
     Route::post('games', 'GamesController@store')->name('games.store');
-    Route::get('games/{id}', 'GamesController@show')->name('games.show');
     Route::get('games/join', 'GamesController@join')->name('games.join');
+    Route::get('games/{id}', 'GamesController@show')->name('games.show');
 
 });

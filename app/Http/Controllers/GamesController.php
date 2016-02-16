@@ -10,6 +10,9 @@ use Illuminate\View\View;
 class GamesController extends AppController
 {
     const SHOW_GAME = 'games.show';
+    const CREATED_GAME_MESSAGE = '%s, you have successfully created the game!';
+    const JOINED_GAME_MESSAGE = '%s, you have successfully joined the game!';
+    const ERROR_NO_GAMES_FOUND = 'No games found, try again later.';
 
     public function store()
     {
@@ -21,7 +24,7 @@ class GamesController extends AppController
         $player->user_id = Auth::id();
         $player->save();
 
-        session()->flash('success', sprintf('%s, you have successfully created the game!', Auth::user()->name));
+        session()->flash('success', sprintf(self::CREATED_GAME_MESSAGE, Auth::user()->name));
 
         return redirect()->route(self::SHOW_GAME, [$game->id]);
     }
@@ -38,4 +41,33 @@ class GamesController extends AppController
 
         return view(self::SHOW_GAME, compact($game));
     }
+
+    /**
+     * Joins the game of another person
+     *
+     * @params
+     */
+    public function join()
+    {
+        $players = Player::where('user_id', Auth::id())->get();
+        $gameIds = $players->lists('game_id')->toArray();
+
+        $game = Game::whereNotIn('id', $gameIds)->first();
+
+        if (is_null($game)) {
+            session()->flash('error', sprintf(self::ERROR_NO_GAMES_FOUND, Auth::user()->name));
+
+            return redirect()->route('welcome');
+        }
+
+        $player = new Player();
+        $player->game_id = $game->id;
+        $player->user_id = Auth::id();
+        $player->save();
+
+        session()->flash('success', sprintf(self::JOINED_GAME_MESSAGE, Auth::user()->name));
+
+        return redirect()->route(self::SHOW_GAME, [$game->id]);
+    }
+
 }
