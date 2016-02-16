@@ -30,15 +30,24 @@ div .userPanel small
 
 /*# WELCOME STYLES */
 
-#join
+.formWelcome
 {
-	height: 200px;
-	width: 200px;
-	background-image: url("../images/join.png");
+	display: inline;
+}
+
+#join, #create
+{
+	height: 300px;
+	width: 300px;	
 	background-size: 100% 100%;
 	display: block;
-	margin: 0px auto;
+	margin: 50px auto;
 	transition: all 0.3s ease-in-out;
+}
+
+#join
+{
+	background-image: url("../images/join.png");
 }
 
 #join:hover
@@ -48,13 +57,7 @@ div .userPanel small
 
 #create
 {
-	height: 200px;
-	width: 200px;
 	background-image: url("../images/create.png");
-	background-size: 100% 100%;	
-	display: block;
-	margin: 0px auto;
-	transition: all 0.3s ease-in-out;
 }
 
 #create:hover
@@ -62,6 +65,31 @@ div .userPanel small
 	background-image: url("../images/create2.png");
 }
 
+/*# GAME STYLES */
 
+.player-host
+{
+	height: 50%;
+	width: 100%;
+	background-color: #eb6248;
+}
 
+.player-guest
+{
+	height: 50%;
+	width: 100%;
+	background-color: #4fc0a3;
+}
+
+.player-host p, .player-guest p, h4
+{
+	color: #fff;
+	text-align: center;
+	font-size:20px;
+}
+
+h4
+{
+	font-size: 100px;
+}
 
