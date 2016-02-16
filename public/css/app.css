@@ -6,7 +6,7 @@
 header img
 {
 	height: 50px;
-	width: 50px;
+	width: 75px;
 	vertical-align: text-bottom;
 	margin-right: 10px;
 }
@@ -18,7 +18,7 @@ header h1
 
 .userPanel
 {
-	border-top: 1px solid #fff;
+	border-top: 1px solid ;
 	padding-top: 10px;
 }
 
