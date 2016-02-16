@@ -7,13 +7,17 @@
         <h2>
             Welcome again, {{ Auth::user()->name }}!
         </h2>
-        <nav>
-            {{ Form::open(['url' => route('games.store'), 'method' => 'post']) }}
-            <div class="well"><button class="btn btn-success" href="{{ route('games.store') }}" role="button">join game</button></div>
+        <nav class="row">
+            {{ Form::open(['url' => route('games.store'), 'method' => 'post', 'class' => 'formWelcome']) }}
+            <div class="col-md-6">
+                <button class="btn" id="join" href="{{ route('games.store') }}" role="button"></button>                
+            </div>
             {{ Form::close() }}
 
-            {{ Form::open(['url' => route('games.store'), 'method' => 'post']) }}
-            <div class="well"><button class="btn btn-success" href="{{ route('games.store') }}" role="button">create new game</button></div>
+            {{ Form::open(['url' => route('games.store'), 'method' => 'post', 'class' => 'formWelcome']) }}
+            <div class="col-md-6">
+                <button class="btn" id="create" href="{{ route('games.store') }}" role="button"></button>
+            </div>
             {{ Form::close() }}
         </nav>
     </div>

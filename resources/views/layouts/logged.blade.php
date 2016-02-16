@@ -9,7 +9,9 @@
         <a href="{{ route('welcome') }}">
             {{ HTML::image('images/logo.svg', 'logo', array('height' => 42, 'weight' => 42)) }}
         </a>
+        <div class="h1">
         <h1>RISK</h1>
+    </div class="h1">
         <p>A world domination game</p>
 
         <!--  THIS IS THE USER OPTION PANEL -->
