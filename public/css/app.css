@@ -3,6 +3,13 @@
 
 /*# HEADER STYLES */
 
+header
+{
+	background-image: url("../images/header-background.png");
+	background-size: 100%;
+	background-position: center;
+}
+
 header img
 {
 	height: 50px;
@@ -13,12 +20,18 @@ header img
 
 header h1
 {
+	color: #fff;
 	display: inline;
+}
+
+header p, .userPanel small
+{
+	color: #fff;
 }
 
 .userPanel
 {
-	border-top: 1px solid ;
+	border-top: 1px solid #fff;
 	padding-top: 10px;
 }
 
