@@ -22,6 +22,7 @@ class GamesController extends AppController
         $player = new Player();
         $player->game_id = $game->id;
         $player->user_id = Auth::id();
+        $player->is_host = true;
         $player->save();
 
         session()->flash('success', sprintf(self::CREATED_GAME_MESSAGE, Auth::user()->name));
@@ -39,7 +40,7 @@ class GamesController extends AppController
     {
         $game = Game::find($gameId);
 
-        return view(self::SHOW_GAME, compact($game));
+        return view(self::SHOW_GAME, compact('game'));
     }
 
     /**
