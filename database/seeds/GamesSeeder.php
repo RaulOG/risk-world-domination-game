@@ -30,6 +30,7 @@ class GamesSeeder extends Seeder
             factory(App\Player::class)->create([
                 'game_id' => $game->id,
                 'user_id' => $hostUser->id,
+                'is_host' => true,
             ]);
 
             // Guest
