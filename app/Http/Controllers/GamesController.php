@@ -52,7 +52,7 @@ class GamesController extends AppController
         $players = Player::where('user_id', Auth::id())->get();
         $gameIds = $players->lists('game_id')->toArray();
 
-        $game = Game::whereNotIn('id', $gameIds)->first();
+        $game = Game::whereNotIn('id', $gameIds)->where(['state' => Game::STATE_OPEN])->first();
 
         if (is_null($game)) {
             session()->flash('error', sprintf(self::ERROR_NO_GAMES_FOUND, Auth::user()->name));
