@@ -13,6 +13,7 @@ class GamesController extends AppController
     const CREATED_GAME_MESSAGE = '%s, you have successfully created the game!';
     const JOINED_GAME_MESSAGE = '%s, you have successfully joined the game!';
     const ERROR_NO_GAMES_FOUND = 'No games found, try again later.';
+    const ERROR_NOT_IN_GAME = 'You are not in this game';
 
     public function store()
     {
@@ -40,7 +41,23 @@ class GamesController extends AppController
     {
         $game = Game::find($gameId);
 
-        return view(self::SHOW_GAME, compact('game'));
+        $currentPlayer = Player::where(
+            [
+                'game_id' => $game->id,
+                'user_id' => Auth::id(),
+            ]
+        )->first();
+
+        if (is_null($currentPlayer)) {
+            session()->flash('error', sprintf(self::ERROR_NOT_IN_GAME, Auth::user()->name));
+
+            return redirect()->route('welcome');
+        }
+
+        return view(self::SHOW_GAME, [
+            'game' => $game,
+            'current_player' => $currentPlayer,
+        ]);
     }
 
     /**
