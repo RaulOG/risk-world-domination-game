@@ -115,6 +115,9 @@ class GamesController extends AppController
             return redirect()->route('games.show', $game->id);
         }
 
+        $game->state = Game::STATE_IN_PROGRESS;
+        $game->save();
+
         session()->flash('success', sprintf(self::MESSAGE_STARTED_GAME));
         return redirect()->route(self::ROUTE_SHOW_GAME, $game->id);
     }
