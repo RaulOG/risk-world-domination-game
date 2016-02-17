@@ -1,10 +1,26 @@
 {
+  "name": "AnimalWorld",
+  "description": "A Project to try out stuff",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaulOG/AnimalWorld.git"
+  },
+  "author": "Héctor, Raúl and Zuzanna",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/RaulOG/AnimalWorld/issues"
+  },
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.8"
   },
   "dependencies": {
     "laravel-elixir": "^4.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "bootstrap-sass": "^3.0.0",
+    "bower": "^1.7.0"
+  },
+  "scripts": {
+    "postinstall": "bower install"
   }
 }
