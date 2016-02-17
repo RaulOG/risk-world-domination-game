@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use App\Player;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class GamesController extends AppController
 {
-    const SHOW_GAME = 'games.show';
-    const CREATED_GAME_MESSAGE = '%s, you have successfully created the game!';
-    const JOINED_GAME_MESSAGE = '%s, you have successfully joined the game!';
+    const VIEW_SHOW_GAME = 'games.show';
+    const ROUTE_SHOW_GAME = 'games.show';
+
+    const MESSAGE_CREATED_GAME = '%s, you have successfully created the game!';
+    const MESSAGE_JOINED_GAME = '%s, you have successfully joined the game!';
+    const MESSAGE_STARTED_GAME = 'Game started! BAM!';
+
     const ERROR_NO_GAMES_FOUND = 'No games found, try again later.';
     const ERROR_NOT_IN_GAME = 'You are not in this game';
+    const ERROR_NOT_ENOUGH_PLAYERS = 'This game does not have enough players to start!';
 
     public function store()
     {
@@ -26,9 +32,9 @@ class GamesController extends AppController
         $player->is_host = true;
         $player->save();
 
-        session()->flash('success', sprintf(self::CREATED_GAME_MESSAGE, Auth::user()->name));
+        session()->flash('success', sprintf(self::MESSAGE_CREATED_GAME, Auth::user()->name));
 
-        return redirect()->route(self::SHOW_GAME, [$game->id]);
+        return redirect()->route(self::ROUTE_SHOW_GAME, [$game->id]);
     }
 
     /**
@@ -54,7 +60,7 @@ class GamesController extends AppController
             return redirect()->route('welcome');
         }
 
-        return view(self::SHOW_GAME, [
+        return view(self::VIEW_SHOW_GAME, [
             'game' => $game,
             'current_player' => $currentPlayer,
         ]);
@@ -62,8 +68,6 @@ class GamesController extends AppController
 
     /**
      * Joins the game of another person
-     *
-     * @params
      */
     public function join()
     {
@@ -83,9 +87,35 @@ class GamesController extends AppController
         $player->user_id = Auth::id();
         $player->save();
 
-        session()->flash('success', sprintf(self::JOINED_GAME_MESSAGE, Auth::user()->name));
+        session()->flash('success', sprintf(self::MESSAGE_JOINED_GAME, Auth::user()->name));
 
-        return redirect()->route(self::SHOW_GAME, [$game->id]);
+        return redirect()->route(self::ROUTE_SHOW_GAME, [$game->id]);
     }
 
+    /**
+     * Starts a game
+     *
+     * @param int $gameId
+     *
+     * @return RedirectResponse
+     */
+    public function start($gameId)
+    {
+        $game = Game::find($gameId);
+
+        if (is_null($game)) {
+            session()->flash('error', sprintf(self::ERROR_NO_GAMES_FOUND, Auth::user()->name));
+
+            return redirect()->route('welcome');
+        }
+
+        if (count($game->players) < 2) {
+            session()->flash('error', sprintf(self::ERROR_NOT_ENOUGH_PLAYERS));
+
+            return redirect()->route('games.show', $game->id);
+        }
+
+        session()->flash('success', sprintf(self::MESSAGE_STARTED_GAME));
+        return redirect()->route(self::ROUTE_SHOW_GAME, $game->id);
+    }
 }
