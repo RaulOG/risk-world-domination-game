@@ -12,5 +12,6 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+    mix.coffee('game.coffee');
     mix.sass('app.scss');
 });

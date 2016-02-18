@@ -10,4 +10,5 @@
         @include('games.partials.game-close')
     @endif
 
+    {{ HTML::script('js/game.js') }}
 @endsection
