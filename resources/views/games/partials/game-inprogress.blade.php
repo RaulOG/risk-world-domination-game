@@ -29,7 +29,7 @@
                     <p>number of troops</p>
                     <h4>{{ $player->troops }}</h4>
                 </div>
-                {{ Form::open(array('route' => array('games.start', $game->id), 'method' => 'post', 'name' => 'actionForm'))  }}
+                {{ Form::open(array('route' => array('games.action', $game->id), 'method' => 'post', 'name' => 'actionForm'))  }}
                     @if ($player->id == $current_player->id)
                         {{ Form::hidden('action', 'action.eot') }}
                         {{Form::submit('End the turn') }}
