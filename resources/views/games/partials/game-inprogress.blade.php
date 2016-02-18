@@ -17,7 +17,18 @@
         <div class="container row">
             @foreach ($game->players as $player)
                 <div class="col-md-6">
-                    <p>{{ $player->user->name }}</p>
+                    @if ($player->id == $current_player->id)
+                        <p>
+                            <strong>
+                                {{ $player->user->name }}
+                            </strong>
+                        </p>
+                    @else
+                        <p>
+                            {{ $player->user->name }}
+                        </p>
+                    @endif
+
                     <div class="player-{{ $player->is_host? 'host' : 'guest' }}">
                         <p>number of troops</p>
                         <h4>{{ $player->troops }}</h4>
