@@ -8,23 +8,18 @@
 
     <div>
         <h2>
-            Go for it, {{ Auth::user()->name }}!
+            Your turn, {{ $turn->player->user->name }}!
         </h2>
         <div class="container row">
-            <div class="col-md-6">
-                <p>{{ Auth::user()->name }}</p>
-                <div class="player-host">
-                    <p>number of troops</p>
-                    <h4>5</h4>
+            @foreach ($game->players as $player)
+                <div class="col-md-6">
+                    <p>{{ $player->user->name }}</p>
+                    <div class="player-{{ $player->is_host? 'host' : 'guest' }}">
+                        <p>number of troops</p>
+                        <h4>{{ $player->troops }}</h4>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <p>your opponent</p>
-                <div class="player-guest">
-                    <p>number of troops</p>
-                    <h4>5</h4>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 

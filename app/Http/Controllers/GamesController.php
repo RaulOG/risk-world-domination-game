@@ -60,9 +60,12 @@ class GamesController extends AppController
             return redirect()->route('welcome');
         }
 
+        $turn = $this->getTurn();
+
         return view(self::VIEW_SHOW_GAME, [
             'game' => $game,
             'current_player' => $currentPlayer,
+            'turn' => $turn,
         ]);
     }
 
@@ -120,5 +123,15 @@ class GamesController extends AppController
 
         session()->flash('success', sprintf(self::MESSAGE_STARTED_GAME));
         return redirect()->route(self::ROUTE_SHOW_GAME, $game->id);
+    }
+
+    private function getTurn()
+    {
+        $turn = new \StdClass();
+        $turn->player = new \StdClass();
+        $turn->player->user = new \StdClass();
+        $turn->player->user->name = 'Some name';
+
+        return $turn;
     }
 }
