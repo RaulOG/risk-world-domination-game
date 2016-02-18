@@ -18,6 +18,7 @@ class AddIdAndTroopsToPlayer extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('game_id')->unsigned()->index();
+            $table->boolean('is_host')->default(false);
             $table->integer('troops');
             $table->timestamps();
 

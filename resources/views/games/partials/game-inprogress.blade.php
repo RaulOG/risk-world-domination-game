@@ -8,7 +8,11 @@
 
     <div>
         <h2>
-            Your turn, {{ $turn->player->user->name }}!
+            @if ($turn->player->id == $current_player->id)
+                Your turn, {{ $turn->player->user->name }}!
+            @else
+                Is the turn of {{ $turn->player->user->name }}!
+            @endif
         </h2>
         <div class="container row">
             @foreach ($game->players as $player)

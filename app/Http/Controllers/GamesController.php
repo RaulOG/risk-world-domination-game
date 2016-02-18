@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use App\Player;
+use App\Turn;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -60,7 +61,10 @@ class GamesController extends AppController
             return redirect()->route('welcome');
         }
 
-        $turn = $this->getTurn();
+        $turn = Turn
+            ::where('game_id', $game->id)
+            ->where('is_current', true)
+            ->first();
 
         return view(self::VIEW_SHOW_GAME, [
             'game' => $game,
@@ -118,20 +122,21 @@ class GamesController extends AppController
             return redirect()->route('games.show', $game->id);
         }
 
+        $players = $game->players->toArray();
+        $firstPlayer = $players[rand(0, count($game->players) - 1)];
+
+        // Changing game state
         $game->state = Game::STATE_IN_PROGRESS;
         $game->save();
 
+        // Creating a new turn
+        $turn = new Turn();
+        $turn->game_id = $game->id;
+        $turn->player_id = $firstPlayer['id'];
+        $turn->is_current = true;
+        $turn->save();
+
         session()->flash('success', sprintf(self::MESSAGE_STARTED_GAME));
         return redirect()->route(self::ROUTE_SHOW_GAME, $game->id);
-    }
-
-    private function getTurn()
-    {
-        $turn = new \StdClass();
-        $turn->player = new \StdClass();
-        $turn->player->user = new \StdClass();
-        $turn->player->user->name = 'Some name';
-
-        return $turn;
     }
 }

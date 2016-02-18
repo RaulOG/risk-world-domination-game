@@ -13,7 +13,7 @@ class Player extends Model
      */
     public function game()
     {
-        return $this->belongsTo('App\Game');
+        return $this->belongsTo(Game::class);
     }
 
     /**
@@ -21,6 +21,6 @@ class Player extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 }
