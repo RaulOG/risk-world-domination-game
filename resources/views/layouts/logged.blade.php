@@ -29,6 +29,7 @@
         {{ HTML::script('bower/jquery/dist/jquery.min.js') }}
         {{ HTML::script('bower/bootstrap/dist/js/bootstrap.min.js') }}
     @show
+
 </div>
 </body>
 </html>

@@ -41,6 +41,13 @@ div .userPanel small
 	margin-right: 0;
 }
 
+/*# CONTAINER STYLES */
+
+.container {
+	padding-bottom: 100px;
+}
+
+
 /*# WELCOME STYLES */
 
 .formWelcome
