@@ -198,7 +198,7 @@ class GamesController extends AppController
 
         // Assign an attacker and a defender from the game's players
         foreach ($players as $player) {
-            if($player->user_id === Auth::id())
+            if((int)$player->user_id === Auth::id())
             {
                 $attacker = $player;
             } else {
@@ -217,6 +217,7 @@ class GamesController extends AppController
         if($loser->troops === 0)
         {
             $game->state = Game::STATE_CLOSED;
+            $game->user_winner = $attacker->user_id;
             // @todo Game->winner_id = $winner->id;
             $game->save();
         }
@@ -254,7 +255,7 @@ class GamesController extends AppController
 
         foreach($players as $player)
         {
-            if($player->user_id !== Auth::id())
+            if((int)$player->user_id !== Auth::id())
             {
                 $nextPlayer = $player;
                 break;
